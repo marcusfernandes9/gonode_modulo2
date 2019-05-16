@@ -22,9 +22,16 @@ class SessionController {
 
     req.session.user = user
     console.log(' session controller #########req.session.user #########')
-    console.log(req.session.user)
+    // console.log(req.session.user)
 
     return res.redirect('/app/dashboard')
+  }
+
+  destroy (req, res) {
+    req.session.destroy(() => {
+      res.clearCookie('root')
+      return res.redirect('/')
+    })
   }
 }
 
