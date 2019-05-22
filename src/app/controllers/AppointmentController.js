@@ -23,13 +23,17 @@ class AppointmentController {
     res.redirect('/app/dashboard')
   }
 
+  schedule (req, res) {
+    return res.render('appointments/index')
+  }
+
   async list (req, res) {
-    const { user } = req.session.id
+    const { id } = req.session.user
     const date = moment(parseInt(req.query.date))
     const appointments = await Appointment.findAll({
       include: [{ model: User, as: 'user' }],
       where: {
-        provider_id: user,
+        provider_id: id,
         date: {
           [Op.between]: [
             date.startOf('day').format(),
