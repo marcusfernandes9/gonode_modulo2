@@ -30,7 +30,7 @@ class AppointmentController {
   async list (req, res) {
     const { id } = req.session.user
     const date = moment(parseInt(req.query.date))
-    const appointments = await Appointment.findAll({
+    const schedules = await Appointment.findAll({
       include: [{ model: User, as: 'user' }],
       where: {
         provider_id: id,
@@ -43,7 +43,7 @@ class AppointmentController {
       }
     })
 
-    return res.render('appointments/index', { appointments })
+    return res.render('schedule/index', { schedules })
   }
 }
 

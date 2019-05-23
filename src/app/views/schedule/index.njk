@@ -1,0 +1,5 @@
+{% for schedule in schedules %}
+  <label>
+    {{ schedule.date.toLocaleDateString() }} - {{ schedule.user.name }}
+  </label>
+{% endfor %}

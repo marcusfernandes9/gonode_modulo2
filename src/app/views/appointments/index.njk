@@ -24,7 +24,6 @@
       dateFormat: 'd/m/Y',
       onChange: function (date){
         fetch(`/app/appointments/list?date=${date[0].getTime()}`).then(function(response){
-          alert('marcus')
           response.text().then(function(html){
             document.getElementById('hours').innerHTML = html
           })
